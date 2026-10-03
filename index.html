@@ -134,6 +134,16 @@
     .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
     .project { padding:27px; min-height:310px; position:relative; overflow:hidden; }
     .project::after { content:""; position:absolute; width:170px; height:170px; border-radius:50%; background:radial-gradient(circle, rgba(99,169,255,.15), transparent 70%); right:-55px; top:-55px; }
+    .project-image {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      object-position: top;
+      display: block;
+      border-radius: 14px;
+      margin: 18px 0 22px;
+      border: 1px solid var(--line);
+    }
     .project-number { font-family:monospace; color:#6f86a0; }
     .project h3 { font-size:1.45rem; margin:45px 0 6px; letter-spacing:-.03em; }
     .project .type { color:var(--accent); font-size:.84rem; font-weight:800; text-transform:uppercase; letter-spacing:.09em; }
@@ -319,13 +329,68 @@
       <div class="container">
         <div class="section-head reveal"><div><div class="eyebrow">03 · Selected Work</div><h2>Projects I’m proud of.</h2></div><p>A mix of technical projects, product work and challenge-based builds. My GitHub has more of my work.</p></div>
         <div class="project-grid">
-          <article class="card project reveal"><div class="project-number">01</div><div><span class="type">Personal Project · In progress</span><h3>Smart Document Analyser</h3><p>A Python/FastAPI application for uploading, storing and retrieving documents using SQLAlchemy and SQLite, with AI-powered document analysis planned.</p><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span><span class="tag">SQLite</span></div><!-- rel="noopener" is a safety habit for links opening in a new tab -->
-          <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/noopener -->
+          <article class="card project reveal"><div class="project-number">01</div><div><span class="type">Personal Project · In progress</span>
+            <h3>Smart Document Analyser</h3>
+            <img
+              src="images/smart-document-analyser-api.png"
+              alt="Smart Document Analyser FastAPI OpenAPI documentation"
+              class="project-image"
+            ><p>A Python/FastAPI document analysis backend that accepts .txt, .pdf and .docx files, extracts their contents and uses the Gemini API to classify documents and generate tailored outputs. The pipeline uses structured JSON schemas with separate classification and generation stages. A web frontend, database persistence and user accounts are planned as future stages.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Gemini API</span><span class="tag">REST API</span><span class="tag">JSON Schema</span></div>
+            <!-- rel="noopener" is a safety habit for links opening in a new tab -->
+            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/noopener -->
            <a class="project-link" href="https://github.com/janagadelmola/SmartDocumentAnalyser" target="_blank" rel="noopener">View on GitHub ↗</a></div></article>
-          <article class="card project reveal"><div class="project-number">02</div><div><span class="type">Hackathon · 1st Place</span><h3>StudyBuddy</h3><p>A student-matching app concept designed during Cyprus DigiEduHack 2025, using a smart algorithm based on subjects and schedules to connect students.</p><div class="award">★ 1st Place · EduDataHack</div><div class="tags"><span class="tag">Algorithms</span><span class="tag">Product Design</span><span class="tag">UX</span></div></div></article>
-          <article class="card project reveal"><div class="project-number">03</div><div><span class="type">Product · IEUK 2026</span><h3>EcoCart</h3><p>Worked as Product Analyst on an app concept focused on food waste. Produced UX wireframes, a product requirements document and an investor pitch, including an AI-driven recipe feature.</p><div class="tags"><span class="tag">Product Analysis</span><span class="tag">UX Wireframes</span><span class="tag">Generative AI</span></div></div></article>
-          <article class="card project reveal"><div class="project-number">04</div><div><span class="type">Technical · Ocularmed</span><h3>Robotic Blood-Banking</h3><p>Helped communicate complex robotic blood-banking technology to non-technical audiences through an AI-generated explainer video, website prototype and visual identity.</p><div class="tags"><span class="tag">Prompt Engineering</span><span class="tag">AI</span><span class="tag">Prototyping</span></div></div></article>
-        </div>
+          <article class="card project reveal"><div class="project-number">02</div><div><span class="type">Hackathon · 1st Place</span><h3>StudyBuddy</h3>
+            <a href="documents/StudyBuddy-Certificate.pdf"
+              target="_blank"
+              rel="noopener">
+              <img
+                src="images/studybuddy-certificate.jpg"
+                alt="StudyBuddy first place certificate from EduDataHack 2025 (opens pdf)"
+                class="project-image"
+              >
+            </a>
+            <p>A study-partner app concept designed to match students based on their subjects, timetables and learning styles. I focused on the product concept and design, helping shape the user experience and overall solution during the hackathon.</p><div class="award">★ 1st Place · EduDataHack</div><div class="tags"><span class="tag">Product Design</span><span class="tag">UX</span><span class="tag">Hackathon</span></div>
+          <a class="project-link"
+            href="documents/StudyBuddy-Solution-Canvas.pdf"
+            target="_blank"
+            rel="noopener">
+            View Solution Canvas ↗
+          </a>
+          </div></article>
+          <article class="card project reveal"><div class="project-number">03</div><div><span class="type">Product · IEUK 2026</span><h3>EcoCart</h3>
+          <a
+            href="documents/EcoCart-UX-Wireframes.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="images/ecocart-wireframes.png"
+              alt="EcoCart UX wireframes showing receipt scanning, inventory and AI recipe suggestions (opens pdf)"
+              class="project-image"
+            >
+          </a>
+          <p>As Product Analyst, I developed the product requirements and UX concept for an AI-powered Smart Pantry designed to help users reduce food waste and save money. I created user personas, user stories and acceptance criteria, and designed UX wireframes for receipt scanning, inventory management and AI-powered recipe suggestions.</p>
+          <div class="tags"><span class="tag">Product Analysis</span><span class="tag">UX Wireframes</span><span class="tag">Generative AI</span><span class="tag">Figma</span></div>
+            <a
+              class="project-link"
+              href="documents/EcoCart-Product-Requirements.pdf"
+              target="_blank"
+              rel="noopener"
+            >
+              View Product Requirements ↗
+            </a>
+          </div></article>
+          <article class="card project reveal"><div class="project-number">04</div><div><span class="type">Technical · Ocularmed</span><h3>Robotic Blood-Banking</h3>
+            <img
+              src="images/ocularmed-website.png"
+              alt="Ocularmed website prototype for robotic blood-banking technology"
+              class="project-image"
+            >
+            <p>As a Prompt Engineer, I helped translate Ocularmed's robotic blood-banking technology into clear, accessible messaging. I worked on prompt development for an AI-generated explainer video and contributed to the website concept and visual identity.</p>
+            <div class="tags"><span class="tag">Prompt Engineering</span><span class="tag">AI</span><span class="tag">Prototyping</span><span class="tag">Visual Design</span></div>
+          </div></article>
+          </div>
 
         <div class="mini-projects reveal">
           <div class="mini-project-head"><div><div class="eyebrow">More on GitHub</div><h3>Mini Projects</h3></div><a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">View all on GitHub ↗</a></div>
@@ -414,13 +479,13 @@
     // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     // ...toggle adds the class "open" to the menu or takes it off if its already there (my CSS shows/hides the menu based on it)
     // https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle
-    // the () => ... bit is an arrow function, a short wat to write a small function
+    // the () => ... bit is an arrow function, a short way to write a small function
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
     menu.addEventListener('click', () => nav.classList.toggle('open'));
     // querySelectorAll finds EVERY match (all the menu links) and forEach does something to each one
     // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll
     // https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
-    // so: when any menu link is clocked, remove "open" so the menu closes after jumping to a section
+    // so: when any menu link is clicked, remove "open" so the menu closes after jumping to a section
     // https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove
     document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
