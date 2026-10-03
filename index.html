@@ -2,10 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <!--
+  stops phones zooming out to a tiny desktop page -->
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta/name/viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Jana Gadelmola, Computer Science student, AI & technology enthusiast, and placement candidate." />
   <title>Jana Gadelmola | Computer Science</title>
+  <!-- note: the CSS asks for Inter but never loaded it, 
+   so most people saw a fallback font. This loads it from Google -->
+  <!-- https://fonts.google.com/specimen/Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="style sheet" />
+  <!-- if javascript is off, show everything instead of leaving the fade-in sections invisible -->
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/noscript -->
+  <noscript>
+    <style>
+      .reveal { opacity:1 !important; transform:none !important; }
+    </style>
+  </noscript>
   <style>
+    /* all my colours are here so i only change them in one place */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties */
     :root {
       --bg: #f4f9ff;
       --bg-2: #e7f2ff;
@@ -24,6 +42,8 @@
       --max: 1120px;
     }
     * { box-sizing: border-box; }
+    /* smooth scrolling when a nav link jumps to a section */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/scroll-behavior */
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
@@ -38,7 +58,11 @@
     a { color: inherit; text-decoration: none; }
     .container { width: min(calc(100% - 40px), var(--max)); margin: auto; }
     nav {
+      /* sticky = the nav sticks to the top while scrolling */
+      /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position */
       position: sticky; top: 0; z-index: 50;
+      /* blurs whatever scrolls behind the nav */
+      /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter */
       backdrop-filter: blur(18px);
       background: rgba(244,249,255,.82);
       border-bottom: 1px solid var(--line);
@@ -51,9 +75,15 @@
     .menu { display:none; background:none; border:0; color:var(--text); font-size:1.5rem; }
 
     .hero { min-height: 760px; display:grid; align-items:center; padding: 90px 0 100px; }
+    /* two columns: text on the left, terminal on the right */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout */
     .hero-grid { display:grid; grid-template-columns: 1.15fr .85fr; gap: 70px; align-items:center; }
     .eyebrow { color: var(--accent); font-size:.9rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    /* clamp(min, ideal, max) makes the big name shrink on smaller screens */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp */
     h1 { font-size: clamp(3.3rem, 8vw, 6.5rem); line-height:.93; letter-spacing:-.065em; margin: 18px 0 28px; max-width: 800px; }
+    /* background-clip: text paints the gradient only where the letters are */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-clip */
     .gradient { background: linear-gradient(100deg, #0b2545, #1769aa 52%, #5baaf7); -webkit-background-clip:text; background-clip:text; color:transparent; }
     .hero p { font-size:1.15rem; color:var(--muted); max-width:670px; margin:0; }
     .buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; }
@@ -149,8 +179,16 @@
     footer { border-top:1px solid var(--line); padding:28px 0; color:#70849b; font-size:.85rem; }
     footer .container { display:flex; justify-content:space-between; gap:20px; }
 
+    /* sections start invisible and slide up when scrolled into view (JS adds .visible) */
     .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity:1; transform:none; }
+    /* if someones device asks for less motion, skip the animation and just show things */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity:1; transform:none; transition:none; }
+      .btn { transition:none; }
+    }
     @media (max-width: 850px) {
       .hero-grid, .about-grid { grid-template-columns:1fr; }
       .terminal { max-width:620px; }
@@ -199,6 +237,10 @@
   </style>
 </head>
 <body>
+
+  <!-- 
+  top menu. The # links jump to the element with the matching id -->
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/nav -->
   <nav>
     <div class="container nav-inner">
       <a class="brand" href="#top">Jana<span>.</span></a>
@@ -208,6 +250,8 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
+        <a href="#learning">Learning</a>
+        <a href="#leadership">Leadership</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -218,12 +262,15 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Computer Science · University of Surrey</div>
-          <h1>Building ideas into <span class="gradient">useful technology.</span></h1>
-          <p>I’m Jana, a second-year Computer Science student interested in Generative AI, data, product development and solving real-world problems with technology.</p>
+          <h1>Jana <span class="gradient">Gadelmola</span></h1>
+          <p>Building ideas into useful technology.I’m a second-year Computer Science student interested in Generative AI, data, product development and solving real-world problems with technology.</p>
           <div class="buttons">
             <a class="btn btn-primary" href="#projects">Explore my work ↓</a>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/janagadelmola" target="_blank" rel="noopener">LinkedIn ↗</a>
             <a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">GitHub ↗</a>
+            <!-- the download attribute saves the file instead of opening it. Put my CV PDF next to this file as cv.pdf -->
+            <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#download -->
+            <a class="btn btn-secondary" href="cv.pdf" download>Download CV ↓</a>
           </div>
           <div class="availability"><span class="dot"></span> Open to placement opportunities</div>
         </div>
@@ -236,8 +283,6 @@
             <div class="terminal-line code-purple">["AI", "Data", "Product", "Problem Solving"]</div>
             <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ education</div>
             <div class="terminal-line code-green">BSc Computer Science · Surrey</div>
-            <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ result</div>
-            <div class="terminal-line code-blue">First year: 77% · First-Class Honours</div>
             <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ status</div>
             <div class="terminal-line code-green">seeking_industry_placement = true</div>
           </div>
@@ -275,14 +320,16 @@
       <div class="container">
         <div class="section-head reveal"><div><div class="eyebrow">03 · Selected Work</div><h2>Projects I’m proud of.</h2></div><p>A mix of technical projects, product work and challenge-based builds. My GitHub has more of my work.</p></div>
         <div class="project-grid">
-          <article class="card project reveal"><div class="project-number">01</div><div><span class="type">Personal Project · In progress</span><h3>Smart Document Analyser</h3><p>A Python/FastAPI application for uploading, storing and retrieving documents using SQLAlchemy and SQLite, with AI-powered document analysis planned.</p><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span><span class="tag">SQLite</span></div><a class="project-link" href="https://github.com/janagadelmola/SmartDocumentAnalyser" target="_blank" rel="noopener">View on GitHub ↗</a></div></article>
+          <article class="card project reveal"><div class="project-number">01</div><div><span class="type">Personal Project · In progress</span><h3>Smart Document Analyser</h3><p>A Python/FastAPI application for uploading, storing and retrieving documents using SQLAlchemy and SQLite, with AI-powered document analysis planned.</p><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span><span class="tag">SQLite</span></div><!-- rel="noopener" is a safety habit for links opening in a new tab -->
+          <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/noopener -->
+           <a class="project-link" href="https://github.com/janagadelmola/SmartDocumentAnalyser" target="_blank" rel="noopener">View on GitHub ↗</a></div></article>
           <article class="card project reveal"><div class="project-number">02</div><div><span class="type">Hackathon · 1st Place</span><h3>StudyBuddy</h3><p>A student-matching app concept designed during Cyprus DigiEduHack 2025, using a smart algorithm based on subjects and schedules to connect students.</p><div class="award">★ 1st Place · EduDataHack</div><div class="tags"><span class="tag">Algorithms</span><span class="tag">Product Design</span><span class="tag">UX</span></div></div></article>
           <article class="card project reveal"><div class="project-number">03</div><div><span class="type">Product · IEUK 2026</span><h3>EcoCart</h3><p>Worked as Product Analyst on an app concept focused on food waste. Produced UX wireframes, a product requirements document and an investor pitch, including an AI-driven recipe feature.</p><div class="tags"><span class="tag">Product Analysis</span><span class="tag">UX Wireframes</span><span class="tag">Generative AI</span></div></div></article>
           <article class="card project reveal"><div class="project-number">04</div><div><span class="type">Technical · Ocularmed</span><h3>Robotic Blood-Banking Explainer</h3><p>Helped communicate complex robotic blood-banking technology to non-technical audiences through an AI-generated explainer video, website prototype and visual identity.</p><div class="tags"><span class="tag">Prompt Engineering</span><span class="tag">AI</span><span class="tag">Prototyping</span></div></div></article>
         </div>
 
         <div class="mini-projects reveal">
-          <div class="mini-project-head"><div><div class="eyebrow">04 · More on GitHub</div><h3>Mini Projects</h3></div><a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">View all on GitHub ↗</a></div>
+          <div class="mini-project-head"><div><div class="eyebrow">More on GitHub</div><h3>Mini Projects</h3></div><a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">View all on GitHub ↗</a></div>
           <div class="mini-grid">
             <a class="mini-card" href="https://github.com/janagadelmola/StudentGradeTracker" target="_blank" rel="noopener"><span class="mini-tech">JAVA</span><h4>Student Grade Tracker</h4><p>A Java application built around student, grade and tracking classes.</p><span class="mini-link">GitHub ↗</span></a>
             <a class="mini-card" href="https://github.com/janagadelmola/PersonalFinanceTracker" target="_blank" rel="noopener"><span class="mini-tech">JAVA</span><h4>Personal Finance Tracker</h4><p>A Java project organised into a finance package for personal finance tracking.</p><span class="mini-link">GitHub ↗</span></a>
@@ -301,15 +348,15 @@
           <div class="card skill-card reveal"><h3>Programming & Data</h3><p>Java · Python · SQL</p></div>
           <div class="card skill-card reveal"><h3>Computer Science</h3><p>Data Structures & Algorithms · Object-Oriented Programming · Databases · Operating Systems</p></div>
           <div class="card skill-card reveal"><h3>AI & Data</h3><p>Generative AI · Machine Learning · Data Science · Prompt Engineering · Analytical Skills</p></div>
-          <div class="card skill-card reveal"><h3>Development & Database Tools</h3><p>GitHub · DBeaver · Notepad++ · Microsoft Office</p></div>
-          <div class="card skill-card reveal"><h3>Professional</h3><p>Communication · Teamwork · Leadership · Public Speaking · Problem Solving · Creativity & Innovation</p></div>
-          <div class="card skill-card reveal"><h3>Organisation</h3><p>Time Management · Organisation · Multitasking · Adaptability · Resiliency · Customer Service</p></div>
+          <div class="card skill-card reveal"><h3>Development & Database Tools</h3><p>GitHub · DBeaver · Microsoft Office</p></div>
+          <div class="card skill-card reveal"><h3>Professional</h3><p>Communication · Teamwork · Leadership · Public Speaking · Problem Solving</p></div>
+          <div class="card skill-card reveal"><h3>Organisation</h3><p>Time Management · Organisation · Multitasking · Adaptability · Customer Service</p></div>
           <div class="card skill-card reveal"><h3>Languages</h3><p>English · Arabic · French · Spanish</p></div>
         </div>
       </div>
     </section>
 
-    <section>
+    <section id="learning">
       <div class="container">
         <div class="section-head reveal"><div><div class="eyebrow">05 · Learning</div><h2>Always building my knowledge.</h2></div><p>Selected courses and certifications that complement my Computer Science degree.</p></div>
         <div class="cert-grid">
@@ -325,7 +372,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="leadership">
       <div class="container">
         <div class="section-head reveal"><div><div class="eyebrow">06 · Leadership</div><h2>Leading beyond the classroom.</h2></div><p>University roles where I use communication, organisation and technical skills to contribute to the Surrey student community.</p></div>
         <div class="leadership-grid">
@@ -343,9 +390,11 @@
         <h2>Let’s build something useful.</h2>
         <p>I’m currently looking for a year-in-industry placement where I can learn from experienced teams, contribute to meaningful work and keep developing as a Computer Science student.</p>
         <div class="contact-links">
+          <!-- mailto: opens the visitors email app -->
           <a class="btn btn-primary" href="mailto:Janazeyad07@gmail.com">Email me ↗</a>
           <a class="btn btn-secondary" href="https://www.linkedin.com/in/janagadelmola" target="_blank" rel="noopener">LinkedIn ↗</a>
           <a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-secondary" href="cv.pdf" download>Download CV ↓</a>
         </div>
       </div>
     </section>
@@ -354,14 +403,49 @@
   <footer><div class="container"><span>© 2026 Jana Gadelmola</span><span>Built with HTML, CSS & JavaScript.</span></div></footer>
 
   <script>
+    // note: this whole block is JavaScript. HTML = what's on this page, CSS = how it looks, JS = what it DOES when someone interacts
+    // "const" saves something under a name so i can use it again below
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+    // querySelector finds the first thing on the page that matches, here the button with class "menu"
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector 
     const menu = document.querySelector('.menu');
+    // same idea, this time grabbing the list of menu links
     const nav = document.querySelector('.nav-links');
+    // addEventListener = "when this happens, run this code" here: when the button is clicked...
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+    // ...toggle adds the class "open" to the menu or takes it off if its already there (my CSS shows/hides the menu based on it)
+    // https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle
+    // the () => ... bit is an arrow function, a short wat to write a small function
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
     menu.addEventListener('click', () => nav.classList.toggle('open'));
+    // querySelectorAll finds EVERY match (all the menu links) and forEach does something to each one
+    // https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll
+    // https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+    // so: when any menu link is clocked, remove "open" so the menu closes after jumping to a section
+    // https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/remove
     document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: .12 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // IntersectionObserver tells me when an element scrolls into view so i can fade it in
+    // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+    // grab everything with class "reveal" (the sections and cards that fade in)
+    const items = document.querySelectorAll('.reveal');
+    // check the browser actually has IntersectionObserver before using it ("in" asks "does this exist?")
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
+    if ('IntersectionObserver' in window) {
+      // make the watcher. it runs this function whenever something its watching changes
+      const observer = new IntersectionObserver(entries => {
+        // for each thing that changed: if its now on screen (isIntersecting), add the class "visible", which my CSS turns into the fade-in
+        // https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/isIntersecting
+        // https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/add
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      // threshold .12 = trigger once 12% of the element is visible
+      }, { threshold: .12 });
+      // tell the watcher to start watching every "reveal" item
+      items.forEach(el => observer.observe(el));
+    } else {
+      // very old browsers: just show everything so nothing stays hidden
+      items.forEach(el => el.classList.add('visible'));
+    }
   </script>
 </body>
 </html>
