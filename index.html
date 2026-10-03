@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jana Gadelmola, Computer Science student, AI & technology enthusiast, and placement candidate." />
+  <title>Jana Gadelmola | Computer Science</title>
+  <style>
+    :root {
+      --bg: #f4f9ff;
+      --bg-2: #e7f2ff;
+      --card: rgba(255,255,255,.88);
+      --card-solid: #ffffff;
+      --text: #0b2545;
+      --muted: #58718d;
+      --line: rgba(23,105,170,.14);
+      --accent: #1769aa;
+      --accent-2: #5baaf7;
+      --green: #087f5b;
+      --green-light: #d9f7ec;
+      --green-border: #a9e8d0;
+      --shadow: 0 18px 55px rgba(30,91,145,.10);
+      --radius: 22px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(99,169,255,.14), transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(89,183,255,.10), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(calc(100% - 40px), var(--max)); margin: auto; }
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(244,249,255,.82);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-weight: 800; letter-spacing: -.03em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 26px; color: var(--muted); font-size: .94rem; }
+    .nav-links a:hover { color: var(--text); }
+    .menu { display:none; background:none; border:0; color:var(--text); font-size:1.5rem; }
+
+    .hero { min-height: 760px; display:grid; align-items:center; padding: 90px 0 100px; }
+    .hero-grid { display:grid; grid-template-columns: 1.15fr .85fr; gap: 70px; align-items:center; }
+    .eyebrow { color: var(--accent); font-size:.9rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { font-size: clamp(3.3rem, 8vw, 6.5rem); line-height:.93; letter-spacing:-.065em; margin: 18px 0 28px; max-width: 800px; }
+    .gradient { background: linear-gradient(100deg, #0b2545, #1769aa 52%, #5baaf7); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .hero p { font-size:1.15rem; color:var(--muted); max-width:670px; margin:0; }
+    .buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:13px 18px; border-radius:13px; border:1px solid var(--line); font-weight:700; transition:.2s ease; }
+    .btn:hover { transform:translateY(-2px); border-color:rgba(255,255,255,.2); }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-secondary { background:#fff; color:var(--text); }
+    .availability { display:inline-flex; align-items:center; gap:8px; margin-top:24px; color:var(--green); background:var(--green-light); border:1px solid var(--green-border); padding:7px 11px; border-radius:999px; font-size:.92rem; font-weight:700; }
+    .dot { width:9px; height:9px; background:var(--green); border-radius:50%; box-shadow:0 0 15px rgba(103,216,176,.7); }
+
+    .terminal {
+      border:1px solid var(--line); border-radius:26px; background:#0b2545; color:#eaf5ff; box-shadow:var(--shadow); overflow:hidden;
+      transform: rotate(1deg);
+    }
+    .terminal-top { padding:14px 16px; border-bottom:1px solid var(--line); display:flex; gap:7px; }
+    .terminal-top i { width:10px; height:10px; border-radius:50%; background:#415269; }
+    .terminal-body { padding:25px; font-family:"SFMono-Regular",Consolas,monospace; font-size:.9rem; }
+    .prompt { color:#7be0bb; }
+    .code-muted { color:#71859d; }
+    .code-blue { color:#82bbff; }
+    .code-purple { color:#9DD9FF; }
+    .code-green { color:#7be0bb; }
+    .terminal-line { margin:11px 0; }
+
+    section { padding: 105px 0; border-top:1px solid var(--line); }
+    section:nth-of-type(even) { background: rgba(231,242,255,.46); }
+    .section-head { display:flex; justify-content:space-between; gap:30px; align-items:end; margin-bottom:40px; }
+    .section-head h2 { margin:8px 0 0; font-size:clamp(2rem,4vw,3rem); letter-spacing:-.045em; }
+    .section-head p { color:var(--muted); max-width:520px; margin:0; }
+
+    .about-grid { display:grid; grid-template-columns: .75fr 1.25fr; gap:30px; }
+    .stat-card, .card { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); }
+    .stat-card { padding:28px; display:grid; align-content:space-between; min-height:250px; }
+    .stat-number { font-size:4rem; line-height:1; font-weight:900; letter-spacing:-.07em; }
+    .stat-label { color:var(--muted); }
+    .about-copy { padding:34px; }
+    .about-copy p { color:var(--muted); font-size:1.05rem; }
+    .pill-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:22px; }
+    .pill { border:1px solid rgba(23,105,170,.16); background:#eef7ff; border-radius:999px; padding:7px 11px; color:var(--text); font-size:.88rem; font-weight:650; }
+
+    .experience { display:grid; gap:14px; }
+    .experience-item { display:grid; grid-template-columns: 180px 1fr; gap:30px; padding:26px 0; border-bottom:1px solid var(--line); }
+    .experience-item:first-child { border-top:1px solid var(--line); }
+    .date { color:var(--muted); font-size:.9rem; }
+    .role { font-size:1.2rem; font-weight:800; margin:0 0 2px; }
+    .company { color:var(--accent); font-weight:700; }
+    .experience-item p { color:var(--muted); margin:10px 0 0; }
+
+    .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .project { padding:27px; min-height:310px; position:relative; overflow:hidden; }
+    .project::after { content:""; position:absolute; width:170px; height:170px; border-radius:50%; background:radial-gradient(circle, rgba(99,169,255,.15), transparent 70%); right:-55px; top:-55px; }
+    .project-number { font-family:monospace; color:#6f86a0; }
+    .project h3 { font-size:1.45rem; margin:45px 0 6px; letter-spacing:-.03em; }
+    .project .type { color:var(--accent); font-size:.84rem; font-weight:800; text-transform:uppercase; letter-spacing:.09em; }
+    .project p { color:var(--muted); }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+    .tag { font-size:.78rem; color:var(--accent); padding:5px 9px; border:1px solid var(--line); border-radius:8px; }
+    .award { display:inline-flex; align-items:center; margin-top:16px; color:var(--green); background:var(--green-light); border:1px solid var(--green-border); padding:6px 10px; border-radius:999px; font-size:.85rem; font-weight:800; }
+
+
+    .project-link { display:inline-flex; margin-top:22px; color:var(--accent); font-weight:800; font-size:.9rem; }
+    .project-link:hover, .mini-link:hover { text-decoration:underline; }
+    .mini-projects { margin-top:55px; }
+    .mini-project-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:20px; }
+    .mini-project-head h3 { margin:4px 0 0; font-size:1.8rem; }
+    .mini-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .mini-card { display:block; padding:22px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72); transition:.2s ease; }
+    .mini-card:hover { transform:translateY(-3px); border-color:rgba(23,105,170,.3); box-shadow:var(--shadow); }
+    .mini-tech { color:var(--accent); font-size:.72rem; font-weight:800; letter-spacing:.09em; }
+    .mini-card h4 { margin:12px 0 6px; font-size:1.05rem; }
+    .mini-card p { color:var(--muted); font-size:.9rem; margin:0 0 16px; }
+    .mini-link { color:var(--accent); font-size:.84rem; font-weight:800; }
+
+    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .skill-card { padding:24px; }
+    .skill-card h3 { margin-top:0; }
+    .skill-card p { color:var(--muted); margin-bottom:0; }
+
+    .cert-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .cert { padding:18px 20px; border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.025); }
+    .cert strong { display:block; }
+    .cert span { color:var(--muted); font-size:.9rem; }
+
+    .leadership-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .leadership { padding:25px; }
+    .leadership h3 { margin:0 0 4px; }
+    .leadership p { color:var(--muted); margin:0; }
+
+    .contact { text-align:center; padding-bottom:130px; }
+    .contact h2 { font-size:clamp(2.8rem,6vw,5rem); line-height:.98; letter-spacing:-.06em; margin:14px auto 20px; max-width:800px; }
+    .contact p { color:var(--muted); max-width:600px; margin:auto; }
+    .contact-links { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:30px; }
+    footer { border-top:1px solid var(--line); padding:28px 0; color:#70849b; font-size:.85rem; }
+    footer .container { display:flex; justify-content:space-between; gap:20px; }
+
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid { grid-template-columns:1fr; }
+      .terminal { max-width:620px; }
+      .project-grid, .leadership-grid, .cert-grid { grid-template-columns:1fr; }
+  
+    .project-link { display:inline-flex; margin-top:22px; color:var(--accent); font-weight:800; font-size:.9rem; }
+    .project-link:hover, .mini-link:hover { text-decoration:underline; }
+    .mini-projects { margin-top:55px; }
+    .mini-project-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:20px; }
+    .mini-project-head h3 { margin:4px 0 0; font-size:1.8rem; }
+    .mini-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .mini-card { display:block; padding:22px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72); transition:.2s ease; }
+    .mini-card:hover { transform:translateY(-3px); border-color:rgba(23,105,170,.3); box-shadow:var(--shadow); }
+    .mini-tech { color:var(--accent); font-size:.72rem; font-weight:800; letter-spacing:.09em; }
+    .mini-card h4 { margin:12px 0 6px; font-size:1.05rem; }
+    .mini-card p { color:var(--muted); font-size:.9rem; margin:0 0 16px; }
+    .mini-link { color:var(--accent); font-size:.84rem; font-weight:800; }
+
+    .skills-grid { grid-template-columns:1fr 1fr; }
+      .experience-item { grid-template-columns:1fr; gap:7px; }
+    }
+    @media (max-width: 620px) {
+      .container { width:min(calc(100% - 28px), var(--max)); }
+      .nav-links { display:none; }
+      .menu { display:block; }
+      .nav-links.open { display:flex; position:absolute; left:0; right:0; top:72px; padding:20px; flex-direction:column; background:#091524; border-bottom:1px solid var(--line); }
+      .hero { min-height:auto; padding:80px 0; }
+  
+    .project-link { display:inline-flex; margin-top:22px; color:var(--accent); font-weight:800; font-size:.9rem; }
+    .project-link:hover, .mini-link:hover { text-decoration:underline; }
+    .mini-projects { margin-top:55px; }
+    .mini-project-head { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:20px; }
+    .mini-project-head h3 { margin:4px 0 0; font-size:1.8rem; }
+    .mini-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .mini-card { display:block; padding:22px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72); transition:.2s ease; }
+    .mini-card:hover { transform:translateY(-3px); border-color:rgba(23,105,170,.3); box-shadow:var(--shadow); }
+    .mini-tech { color:var(--accent); font-size:.72rem; font-weight:800; letter-spacing:.09em; }
+    .mini-card h4 { margin:12px 0 6px; font-size:1.05rem; }
+    .mini-card p { color:var(--muted); font-size:.9rem; margin:0 0 16px; }
+    .mini-link { color:var(--accent); font-size:.84rem; font-weight:800; }
+
+    .skills-grid { grid-template-columns:1fr; }
+      section { padding:75px 0; }
+      footer .container { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Jana<span>.</span></a>
+      <button class="menu" aria-label="Open menu">☰</button>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Computer Science · University of Surrey</div>
+          <h1>Building ideas into <span class="gradient">useful technology.</span></h1>
+          <p>I’m Jana, a second-year Computer Science student interested in Generative AI, data, product development and solving real-world problems with technology.</p>
+          <div class="buttons">
+            <a class="btn btn-primary" href="#projects">Explore my work ↓</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/janagadelmola" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <div class="availability"><span class="dot"></span> Open to placement opportunities</div>
+        </div>
+        <div class="terminal" aria-label="Jana's profile terminal">
+          <div class="terminal-top"><i></i><i></i><i></i></div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ whoami</div>
+            <div class="terminal-line code-blue">Computer Science student</div>
+            <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ interests</div>
+            <div class="terminal-line code-purple">["AI", "Data", "Product", "Problem Solving"]</div>
+            <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ education</div>
+            <div class="terminal-line code-green">BSc Computer Science · Surrey</div>
+            <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ result</div>
+            <div class="terminal-line code-blue">First year: 77% · First-Class Honours</div>
+            <div class="terminal-line"><span class="prompt">jana@portfolio</span>:~$ status</div>
+            <div class="terminal-line code-green">seeking_industry_placement = true</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">01 · About</div><h2>A little more about me.</h2></div><p>More than a list of technologies, I care about understanding the problem first, then building something that actually helps.</p></div>
+        <div class="about-grid">
+          <div class="stat-card reveal"><div class="stat-number">77%</div><div class="stat-label">First-year result at the University of Surrey<br><strong>First-Class Honours</strong></div></div>
+          <div class="card about-copy reveal">
+            <p>I’m a Computer Science student at the University of Surrey, currently studying for a BSc with a year in industry. My experience so far spans Generative AI, product development, prompt engineering and technical projects.</p>
+            <p>I enjoy the part of technology where you have to think: breaking down a problem, understanding users, exploring different approaches and turning an idea into something concrete.</p>
+            <p>Alongside my studies, I’m Course Representative for Computer Science, Secretary of the Basketball Society and Webmaster of Surrey CompSoc, experiences that have strengthened my communication, organisation and teamwork.</p>
+            <div class="pill-row"><span class="pill">Generative AI</span><span class="pill">Product Thinking</span><span class="pill">Data</span><span class="pill">Problem Solving</span><span class="pill">Leadership</span><span class="pill">Teamwork</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">02 · Experience</div><h2>Where I’ve been learning.</h2></div><p>Technical and product-focused experience across Generative AI, prompt engineering and technology-led product development.</p></div>
+        <div class="experience">
+          <article class="experience-item reveal"><div class="date">Jul 2026</div><div><div class="role">Generative AI Summer Intern</div><div class="company">Commercial International Bank (CIB) Egypt</div><p>Explored Generative AI concepts and industry applications, producing weekly reflections and scoring 97% on the final assessment.</p></div></article>
+          <article class="experience-item reveal"><div class="date">Jun 2026</div><div><div class="role">Technology & Engineering Summer Intern</div><div class="company">Bright Network · IEUK 2026</div><p>Acted as Product Analyst for the EcoCart concept, creating UX wireframes, a product requirements document and investor pitch deck. Designed an AI recipe feature focused on reducing household food waste.</p></div></article>
+          <article class="experience-item reveal"><div class="date">Jun 2026</div><div><div class="role">Prompt Engineer Summer Intern</div><div class="company">Ocularmed</div><p>Translated robotic blood-banking technology into accessible messaging, co-produced an AI-generated explainer video and designed a website prototype and logo.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">03 · Selected Work</div><h2>Projects I’m proud of.</h2></div><p>A mix of technical projects, product work and challenge-based builds. My GitHub has more of my work.</p></div>
+        <div class="project-grid">
+          <article class="card project reveal"><div class="project-number">01</div><div><span class="type">Personal Project · In progress</span><h3>Smart Document Analyser</h3><p>A Python/FastAPI application for uploading, storing and retrieving documents using SQLAlchemy and SQLite, with AI-powered document analysis planned.</p><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span><span class="tag">SQLite</span></div><a class="project-link" href="https://github.com/janagadelmola/SmartDocumentAnalyser" target="_blank" rel="noopener">View on GitHub ↗</a></div></article>
+          <article class="card project reveal"><div class="project-number">02</div><div><span class="type">Hackathon · 1st Place</span><h3>StudyBuddy</h3><p>A student-matching app concept designed during Cyprus DigiEduHack 2025, using a smart algorithm based on subjects and schedules to connect students.</p><div class="award">★ 1st Place · EduDataHack</div><div class="tags"><span class="tag">Algorithms</span><span class="tag">Product Design</span><span class="tag">UX</span></div></div></article>
+          <article class="card project reveal"><div class="project-number">03</div><div><span class="type">Product · IEUK 2026</span><h3>EcoCart</h3><p>Worked as Product Analyst on an app concept focused on food waste. Produced UX wireframes, a product requirements document and an investor pitch, including an AI-driven recipe feature.</p><div class="tags"><span class="tag">Product Analysis</span><span class="tag">UX Wireframes</span><span class="tag">Generative AI</span></div></div></article>
+          <article class="card project reveal"><div class="project-number">04</div><div><span class="type">Technical · Ocularmed</span><h3>Robotic Blood-Banking Explainer</h3><p>Helped communicate complex robotic blood-banking technology to non-technical audiences through an AI-generated explainer video, website prototype and visual identity.</p><div class="tags"><span class="tag">Prompt Engineering</span><span class="tag">AI</span><span class="tag">Prototyping</span></div></div></article>
+        </div>
+
+        <div class="mini-projects reveal">
+          <div class="mini-project-head"><div><div class="eyebrow">04 · More on GitHub</div><h3>Mini Projects</h3></div><a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">View all on GitHub ↗</a></div>
+          <div class="mini-grid">
+            <a class="mini-card" href="https://github.com/janagadelmola/StudentGradeTracker" target="_blank" rel="noopener"><span class="mini-tech">JAVA</span><h4>Student Grade Tracker</h4><p>A Java application built around student, grade and tracking classes.</p><span class="mini-link">GitHub ↗</span></a>
+            <a class="mini-card" href="https://github.com/janagadelmola/PersonalFinanceTracker" target="_blank" rel="noopener"><span class="mini-tech">JAVA</span><h4>Personal Finance Tracker</h4><p>A Java project organised into a finance package for personal finance tracking.</p><span class="mini-link">GitHub ↗</span></a>
+            <a class="mini-card" href="https://github.com/janagadelmola/TaskScheduler" target="_blank" rel="noopener"><span class="mini-tech">JAVA · OOP</span><h4>Task Scheduler</h4><p>A console app for creating and sorting tasks by priority and deadline, with input validation.</p><span class="mini-link">GitHub ↗</span></a>
+            <a class="mini-card" href="https://github.com/janagadelmola/FlashcardStudyApp" target="_blank" rel="noopener"><span class="mini-tech">JAVA · OOP</span><h4>Flashcard Study App</h4><p>A console app with flashcards, shuffled quiz mode, answer tracking and scoring.</p><span class="mini-link">GitHub ↗</span></a>
+            <a class="mini-card" href="https://github.com/janagadelmola/RockPaperScissors" target="_blank" rel="noopener"><span class="mini-tech">JAVA · AI LOGIC</span><h4>Rock Paper Scissors</h4><p>A Java console game with difficulty levels, pattern-based AI, score tracking and statistics.</p><span class="mini-link">GitHub ↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">04 · Skills</div><h2>My toolkit.</h2></div><p>A curated selection of the technical, analytical and professional skills I’ve developed through university, internships, projects and work experience.</p></div>
+        <div class="skills-grid">
+          <div class="card skill-card reveal"><h3>Programming & Data</h3><p>Java · Python · SQL</p></div>
+          <div class="card skill-card reveal"><h3>Computer Science</h3><p>Data Structures & Algorithms · Object-Oriented Programming · Databases · Operating Systems</p></div>
+          <div class="card skill-card reveal"><h3>AI & Data</h3><p>Generative AI · Machine Learning · Data Science · Prompt Engineering · Analytical Skills</p></div>
+          <div class="card skill-card reveal"><h3>Development & Database Tools</h3><p>GitHub · DBeaver · Notepad++ · Microsoft Office</p></div>
+          <div class="card skill-card reveal"><h3>Professional</h3><p>Communication · Teamwork · Leadership · Public Speaking · Problem Solving · Creativity & Innovation</p></div>
+          <div class="card skill-card reveal"><h3>Organisation</h3><p>Time Management · Organisation · Multitasking · Adaptability · Resiliency · Customer Service</p></div>
+          <div class="card skill-card reveal"><h3>Languages</h3><p>English · Arabic · French · Spanish</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">05 · Learning</div><h2>Always building my knowledge.</h2></div><p>Selected courses and certifications that complement my Computer Science degree.</p></div>
+        <div class="cert-grid">
+          <div class="cert reveal"><strong>McKinsey Forward Program</strong><span>McKinsey · Apr-Jun 2026</span></div>
+          <div class="cert reveal"><strong>Data Science & Analytics</strong><span>HP / Life Global · Apr 2026</span></div>
+          <div class="cert reveal"><strong>Intro to Machine Learning</strong><span>Kaggle · Oct 2025-Jan 2026</span></div>
+          <div class="cert reveal"><strong>Advanced SQL</strong><span>Kaggle · Oct 2025-Jan 2026</span></div>
+          <div class="cert reveal"><strong>Introduction to Cybersecurity</strong><span>Cisco · Oct 2025</span></div>
+          <div class="cert reveal"><strong>Deep Learning with TensorFlow</strong><span>IBM · Sep 2025-Jan 2026</span></div>
+          <div class="cert reveal"><strong>Data Science 101</strong><span>IBM · Sep 2025-Jan 2026</span></div>
+          <div class="cert reveal"><strong>Introduction to Generative AI</strong><span>Google Cloud Skills Boost · Sep 2025</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal"><div><div class="eyebrow">06 · Leadership</div><h2>Leading beyond the classroom.</h2></div><p>University roles where I use communication, organisation and technical skills to contribute to the Surrey student community.</p></div>
+        <div class="leadership-grid">
+          <div class="card leadership reveal"><h3>Course Representative</h3><p>Computer Science · University of Surrey · May 2026-Present</p></div>
+          <div class="card leadership reveal"><h3>Secretary</h3><p>Surrey Basketball Society · May 2026-Present</p></div>
+          <div class="card leadership reveal"><h3>Webmaster</h3><p>Computer Science Society (CompSoc) · Sep 2025-Present<br>Supporting the society’s digital presence and web-related activity.</p></div>
+          <div class="card leadership reveal"><h3>University Basketball Player</h3><p>University of Surrey Women’s 1 Basketball Team · Sep 2025-Present</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container reveal">
+        <div class="eyebrow">07 · Contact</div>
+        <h2>Let’s build something useful.</h2>
+        <p>I’m currently looking for a year-in-industry placement where I can learn from experienced teams, contribute to meaningful work and keep developing as a Computer Science student.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:Janazeyad07@gmail.com">Email me ↗</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/janagadelmola" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-secondary" href="https://github.com/janagadelmola" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><span>© 2026 Jana Gadelmola</span><span>Built with HTML, CSS & JavaScript.</span></div></footer>
+
+  <script>
+    const menu = document.querySelector('.menu');
+    const nav = document.querySelector('.nav-links');
+    menu.addEventListener('click', () => nav.classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
