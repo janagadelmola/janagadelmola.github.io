@@ -129,15 +129,45 @@
     .date { color:var(--muted); font-size:.9rem; }
     .role { font-size:1.2rem; font-weight:800; margin:0 0 2px; }
     .company { color:var(--accent); font-weight:700; }
+        /* company links in Experience: plain by default, underlined on hover */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:hover */
     .experience .company a {
       color: inherit;
       text-decoration: none;
       transition: text-decoration 0.2s ease;
     }
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration */
     .experience .company a:hover {
       text-decoration: underline;
     }
+    /* the arrow is always there but invisible (opacity 0), so the text doesn't jump when it fades in */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::after */
+    .experience .company a::after {
+      content: " ↗";
+      font-weight: 400;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/opacity */
+    .experience .company a:hover::after,
+    .experience .company a:focus-visible::after {
+      opacity: 1;
+    }
     .experience-item p { color:var(--muted); margin:10px 0 0; }
+
+        /* "View certificate" links under each internship, same hover method as the company links */
+    .experience .cert-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .experience .cert-link:hover { text-decoration: underline; }
+    .experience .cert-link::after { content: " ↗"; opacity: 0; transition: opacity 0.2s ease; }
+    .experience .cert-link:hover::after,
+    .experience .cert-link:focus-visible::after { opacity: 1; }
 
     .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
     .project { padding:27px; min-height:310px; position:relative; overflow:hidden; }
@@ -196,6 +226,20 @@
     .cert { padding:18px 20px; border:1px solid var(--line); border-radius:15px; background:rgba(255,255,255,.025); }
     .cert strong { display:block; }
     .cert span { color:var(--muted); font-size:.9rem; }
+
+     /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:hover */
+    .cert a {
+      color: inherit;
+      text-decoration: none;
+      transition: text-decoration 0.2s ease;
+    }
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration */
+    .cert a:hover {
+      text-decoration: underline;
+    }
+    /* a small arrow after linked names so phones (no hover) show what's clickable. Delete these 2 lines if you don't want it */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::after */
+    .cert a::after { content: " ↗"; color: var(--muted); font-weight: 400; }
 
     .leadership-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
     .leadership { padding:25px; }
@@ -339,7 +383,7 @@
     <section id="experience">
       <div class="container">
         <div class="section-head reveal"><div><div class="eyebrow">02 · Experience</div><h2>Where I’ve been learning.</h2></div><p>Technical and product-focused experience across Generative AI, prompt engineering and technology-led product development.</p></div>
-        <div class="experience">
+          <div class="experience">
           <article class="experience-item reveal">
             <div class="date">Jul 2026</div>
             <div>
@@ -350,6 +394,8 @@
                 </a>
               </div>
               <p>Explored Generative AI concepts and industry applications, producing weekly reflections and scoring 97% on the final assessment.</p>
+              <!-- link to the certificate PDF in my documents folder (file must be named exactly like this) -->
+              <a class="cert-link" href="documents/CIB-Certificate.pdf" target="_blank" rel="noopener">View certificate</a>
             </div>
           </article>
 
@@ -363,19 +409,22 @@
                 </a>
               </div>
               <p>Acted as Product Analyst for the EcoCart concept, creating UX wireframes, a product requirements document and investor pitch deck. Designed an AI recipe feature focused on reducing household food waste.</p>
+              <!-- Bright Network certificate page. Test it in a private window first, in case it needs a login -->
+              <a class="cert-link" href="https://www.brightnetwork.co.uk/certificates/ieuk-2026-technology-engineeri_oibquuvu4hdu6v/" target="_blank" rel="noopener">View certificate</a>
             </div>
           </article>
 
           <article class="experience-item reveal">
             <div class="date">Jun 2026</div>
             <div>
-              <div class="role">Prompt Engineer Summer Intern</div>
+              <div class="role">Prompt Engineer · Digital Futures Microjob</div>
               <div class="company">
                 <a href="https://ocularmed.co.uk/" target="_blank" rel="noopener">
                   Ocularmed
-                </a>
+                </a> · via We Job Box
               </div>
-              <p>Translated robotic blood-banking technology into accessible messaging, co-produced an AI-generated explainer video and designed a website strategy and logo.</p>
+              <p>Paired with Ocularmed, a startup, through We Job Box's Digital Futures programme. Translated robotic blood-banking technology into accessible messaging, co-produced an AI-generated explainer video and designed a website strategy and logo.</p>
+              <a class="cert-link" href="documents/Ocularmed-Certificate.pdf" target="_blank" rel="noopener">View certificate</a>
             </div>
           </article>
         </div>
@@ -474,15 +523,20 @@
     <section id="learning">
       <div class="container">
         <div class="section-head reveal"><div><div class="eyebrow">05 · Learning</div><h2>Always building my knowledge.</h2></div><p>Selected courses and certifications that complement my Computer Science degree.</p></div>
-        <div class="cert-grid">
-          <div class="cert reveal"><strong>McKinsey Forward Program</strong><span>McKinsey · Apr-Jun 2026</span></div>
-          <div class="cert reveal"><strong>Data Science & Analytics</strong><span>HP / Life Global · Apr 2026</span></div>
-          <div class="cert reveal"><strong>Intro to Machine Learning</strong><span>Kaggle · Oct 2025-Jan 2026</span></div>
-          <div class="cert reveal"><strong>Advanced SQL</strong><span>Kaggle · Oct 2025-Jan 2026</span></div>
-          <div class="cert reveal"><strong>Introduction to Cybersecurity</strong><span>Cisco · Oct 2025</span></div>
-          <div class="cert reveal"><strong>Deep Learning with TensorFlow</strong><span>IBM · Sep 2025-Jan 2026</span></div>
-          <div class="cert reveal"><strong>Data Science 101</strong><span>IBM · Sep 2025-Jan 2026</span></div>
-          <div class="cert reveal"><strong>Introduction to Generative AI</strong><span>Google Cloud Skills Boost · Sep 2025</span></div>
+          <div class="cert-grid">
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/40aa050b-b1a5-4adc-aaff-02ec2abf295c/public_url" target="_blank" rel="noopener">Responsible Innovation and Trustworthy AI</a></strong><span>SAS</span></div>
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/0e3ba1b0-e4c6-4cc3-8cf5-2b8c3cdff669/public_url" target="_blank" rel="noopener">Generative AI Using SAS</a></strong><span>SAS</span></div>
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/1638b3f8-5b15-4113-b5b7-9027d903a133/public_url" target="_blank" rel="noopener">AI Foundations Knowledge Badge</a></strong><span>SAS</span></div>
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/4c110fad-e15d-43d5-aa37-3f635198c8b9/public_url" target="_blank" rel="noopener">McKinsey Forward Program</a></strong><span>McKinsey</span></div>
+          <div class="cert reveal"><strong><a href="documents/HP-Data-Science-Analytics.pdf" target="_blank" rel="noopener">Data Science & Analytics</a></strong><span>HP / Life Global</span></div>
+          <div class="cert reveal"><strong>Intro to Machine Learning</strong><span>Kaggle</span></div>
+          <div class="cert reveal"><strong>Advanced SQL</strong><span>Kaggle</span></div>
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/a1fcdcfc-6bce-4e09-a66d-04879129e747/public_url" target="_blank" rel="noopener">Introduction to Cybersecurity</a></strong><span>Cisco</span></div>
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/7c3637e2-3a28-4dde-bf21-1a7f95f7404e/public_url" target="_blank" rel="noopener">Deep Learning with TensorFlow</a></strong><span>IBM</span></div>
+          <div class="cert reveal"><strong><a href="https://www.credly.com/badges/18bdb21e-6260-496c-8a7f-2264ba0526fb/public_url" target="_blank" rel="noopener">IBM Cloud Essentials</a></strong><span>IBM</span></div>
+          <div class="cert reveal"><strong>Data Science 101</strong><span>IBM</span></div>
+          <div class="cert reveal"><strong>Introduction to Generative AI</strong><span>Google Cloud Skills Boost</span></div>
+          <div class="cert reveal"><strong><a href="documents/PwC-Virtual-Insight-Programme.pdf" target="_blank" rel="noopener">Virtual Insight Programme</a></strong><span>PwC</span></div>
         </div>
       </div>
     </section>
